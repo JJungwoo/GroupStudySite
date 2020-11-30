@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MailController {
     private final MailService mailService;
 
-    /*
     @ApiOperation(value = "Test Mail Service", tags = "Mail")
     @ApiResponses({
             @ApiResponse(code = 200, message = "SUCCESS"),
@@ -33,5 +32,4 @@ public class MailController {
         mailService.mailSend(mailDto);
     }
 
-     */
 }
