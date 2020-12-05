@@ -36,5 +36,4 @@ public class MailController {
         model.addAttribute("name", name);
         return "hello-template";
     }
-
 }
