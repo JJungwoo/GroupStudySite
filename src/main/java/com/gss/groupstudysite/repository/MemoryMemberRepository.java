@@ -1,9 +1,11 @@
 package com.gss.groupstudysite.repository;
 
 import com.gss.groupstudysite.domain.Member;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
+@Component
 public class MemoryMemberRepository implements MemberRepository {
 
     private static Map<Long, Member> store = new HashMap<>();
@@ -12,6 +14,7 @@ public class MemoryMemberRepository implements MemberRepository {
     @Override
     public Member save(Member member) {
         member.setId(++sequence);
+        System.out.println(member.getId()+" "+member.getEmail());
         store.put(member.getId(), member);
         return null;
     }
