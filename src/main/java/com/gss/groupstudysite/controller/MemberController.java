@@ -30,7 +30,9 @@ public class MemberController {
     public String create(MemberDto memberDto) {
 
         Member member = new Member();
+        member.setNickname(memberDto.getNickname());
         member.setEmail(memberDto.getEmail());
+        member.setSubscription(memberDto.getSubscription());
 
         try {
             memberService.join(member);
@@ -44,6 +46,9 @@ public class MemberController {
     public String selectAll(Model model) {
         List<Member> members = memberService.findMembers();
         model.addAttribute("members", members);
+        for(Member memberList: members) {
+            System.out.println(memberList.toString());
+        }
         return "members/memberList";
     }
 
