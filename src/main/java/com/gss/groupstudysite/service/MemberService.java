@@ -2,7 +2,6 @@ package com.gss.groupstudysite.service;
 
 import com.gss.groupstudysite.domain.Member;
 import com.gss.groupstudysite.repository.MemberRepository;
-import com.gss.groupstudysite.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,30 +1,69 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 <div class="container">
-    <form action="/members/new" method="post">
-        <div class="form-group-name">
+    <form>
+        <div class="form-group">
             <label for="nickname">이름</label>
             <input type="text" id="nickname" name="nickname" placeholder="이름을 입력하세요">
         </div>
-        <div class="form-group-email">
+        <div class="form-group">
             <label for="email">메일</label>
             <input type="text" id="email" name="email" placeholder="메일을 입력하세요">
         </div>
-        <div class="form-group-subscription">
+        <div class="form-group">
             <label for="subscription">구독</label>
-            <input type="checkbox" checked id="subscription" name="subscription" placeholder="구독하시겠습니까?">
+            <input type="checkbox" id="subscription" name="subscription" placeholder="구독하시겠습니까?">
         </div>
 
-
-        <button type="submit">등록</button>
+        <button type="button" id="btn-save" onclick="main.create()">등록</button>
     </form>
-</div> <!-- /container -->
+</div>
 
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+
+    var main = {
+        create : function create() {
+            //$("btn-save").click(function () {
+            var data = {
+                nickname: $('#nickname').val(),
+                email: $('#email').val(),
+                // checkbox 값이 체크 정보에 따라 T, F 반환
+                subscription: !!document.getElementById("subscription").checked
+            };
+
+            alert(data.nickname+":"+data.email+":"+data.subscription);
+
+            $.ajax({
+                url: "/members/new",
+                type: "POST",
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                success: function() {
+                    alert("성공");
+                    // 성공 시 메인 페이지로 이동 (replace는 이동되는데 href는 안됌..)
+                    // window.location.href("/");
+                    window.location.replace("/");
+                },
+                error: function (){
+                    alert("fail");
+                }
+            });
+            // }).done(function() {
+            //     alert("회원가입 성공");
+            //     window.location.href("/");
+            // }).fail(function (error) {
+            //     alert("잘못된 정보입니다. 자세히 :"+JSON.stringify(error));
+            // });
+        }
+    };
+
+</script>
+
 </body>
 </html>
